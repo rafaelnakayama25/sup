@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "@/styles/globals.css";
 import { Inter as FontSans } from "next/font/google";
 
+import MobileNavBar from "@/components/layout/mobile-nav-bar";
+
 const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
@@ -18,8 +20,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={fontSans.className}>{children}</body>
+    <html lang="pt-br" suppressHydrationWarning>
+      <body className={fontSans.className}>
+        <div className="flex flex-col">
+          {children}
+          <div className="h-20">
+            <MobileNavBar />
+          </div>
+        </div>
+      </body>
     </html>
   );
 }
