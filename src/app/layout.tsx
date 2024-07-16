@@ -3,6 +3,7 @@ import "@/styles/globals.css";
 import { Inter as FontSans } from "next/font/google";
 
 import MobileNavBar from "@/components/layout/mobile-nav-bar";
+import Header from "@/components/header/header";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -22,11 +23,10 @@ export default function RootLayout({
   return (
     <html lang="pt-br" suppressHydrationWarning>
       <body className={fontSans.className}>
-        <div className="flex flex-col">
+        <div className="grid grid-col content-between h-screen">
+          <Header />
           {children}
-          <div className="h-20">
-            <MobileNavBar />
-          </div>
+          <MobileNavBar />
         </div>
       </body>
     </html>
