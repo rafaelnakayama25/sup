@@ -17,7 +17,7 @@ export default function MobileNavBar() {
     const pathname = usePathname();
   return (
     <NavigationMenu className='h-20'>
-      <NavigationMenuList className="flex items-center justify-around border border-t-1 h-20 w-screen">
+      <NavigationMenuList className="p-4 fixed bottom-0 w-full z-50 justify-around bg-zinc-50">
         <NavigationMenuItem>
           <Link href="/meditation" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>

@@ -155,7 +155,7 @@ export function EmocionalMeditationChart() {
   }, [timeRange]);
 
   return (
-    <Card className="">
+    <Card className="m-4 mb-0 bg-primary">
       <CardHeader className="flex items-end gap-2 space-y-0 border-b py-5 sm:flex-row">
         <div className="grid flex-1 gap-1 text-center sm:text-left">
           <CardTitle>Emocional + Meditação</CardTitle>
