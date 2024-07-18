@@ -3,9 +3,9 @@ import { Overview } from "@/components/charts/overview";
 
 export default function Home() {
   return (
-    <main className="flex flex-col justify-center bg-blue-300">
+    <main className="flex flex-col justify-center">
       <Overview />
-      <EmocionalMeditationChart />
+      {/* <EmocionalMeditationChart /> */}
     </main>
   );
 }

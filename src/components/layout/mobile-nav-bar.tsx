@@ -3,14 +3,14 @@
 import { usePathname } from 'next/navigation'
 import {
   NavigationMenu,
-  NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { Bolt, CalendarDays, Settings, Smile, Wind } from "lucide-react";
+import {CalendarDays, Cog, NotebookPen, Scale, Settings} from "lucide-react";
+import { flowerLotus } from '@lucide/lab';
+import { Icon } from "lucide-react";
 import Link from "next/link";
 
 export default function MobileNavBar() {
@@ -21,14 +21,14 @@ export default function MobileNavBar() {
         <NavigationMenuItem>
           <Link href="/meditation" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              <Wind size={40} className={`${pathname === '/meditation' ? 'text-primary' : ''}`}/>
+            <Icon iconNode={flowerLotus} size={40} className={`${pathname === '/meditation' ? 'text-primary' : ''}`}/>
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
         <NavigationMenuItem>
           <Link href="/emotional" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              <Smile size={40} className={`${pathname === '/emotional' ? 'text-primary' : ''}`}/>
+              <NotebookPen size={40} className={`${pathname === '/emotional' ? 'text-primary' : ''}`}/>
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
@@ -42,7 +42,7 @@ export default function MobileNavBar() {
         <NavigationMenuItem>
           <Link href="/docs" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              <Settings size={40} className={`${pathname === '/dsadsa' ? 'text-primary' : ''}`}/>
+              <Cog size={40} className={`${pathname === '/dsadsa' ? 'text-primary' : ''}`}/>
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
