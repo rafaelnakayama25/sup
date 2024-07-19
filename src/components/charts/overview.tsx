@@ -34,126 +34,246 @@ import {
   Activity,
   ClipboardCheck,
   Clock,
+  Icon,
   NotebookPen,
   Scale,
   Waves,
 } from "lucide-react";
+import { flowerLotus } from "@lucide/lab";
+
+const autorreflexaoData = [
+  {
+    activity: "stand",
+    value: (8 / 12) * 100,
+    label: "8/12 hr",
+    fill: "var(--color-stand)",
+  },
+];
+
+const meditacaoData = [
+  {
+    activity: "exercise",
+    value: (5 / 15) * 100,
+    label: "5/15 min",
+    fill: "var(--color-exercise)",
+  },
+];
+
+const hobbyData = [
+  {
+    activity: "move",
+    value: (60 / 120) * 100,
+    label: "60/120 min",
+    fill: "var(--color-move)",
+  },
+];
 
 export function Overview() {
   return (
     <div className="chart-wrapper mx-auto flex max-w-6xl flex-col flex-wrap items-start justify-center gap-6 p-6 sm:flex-row sm:p-8">
       <div className="grid w-full gap-6 sm:grid-cols-2 lg:max-w-[22rem] lg:grid-cols-1 xl:max-w-[25rem]">
         <Card
-          className="lg:max-w-md bg-gradient-to-br from-sky-300 via-indigo-300 to-violet-400 shadow-md"
-          x-chunk="charts-01-chunk-0"
+          className="lg:max-w-md bg-gradient-to-br from-sky-300 via-indigo-300 to-violet-400 shadow-md border-solid"
+          x-chunk="charts-01-chunk-4"
         >
-          <CardHeader className="flex flex-row justify-between p-4 pb-0">
-            <CardTitle className="text-2xl font-bold text-blue-800">
+          <CardHeader className="flex flex-row justify-between items-center p-4 pb-0">
+            <CardTitle className="text-2xl font-bold text-blue-900">
               Metas do dia
             </CardTitle>
             <ClipboardCheck className="text-blue-900" size={30} />
           </CardHeader>
-          <CardContent className="flex gap-4 p-4 pt-0">
-            <div className="grid items-center gap-2">
-              <div className="grid flex-1 auto-rows-min gap-0.5">
-                <div className="flex flex-row justify-between w-32 items-center">
-                  <NotebookPen className="text-blue-800" size={24} />
-                  <div className="flex text-lg font-semibold text-blue-800 items-start w-24">
-                    Autorreflexão
-                  </div>
+          <CardContent className="grid p-4 gap-2">
+            <div className="flex flex-row gap-2 w-full items-center">
+              <NotebookPen className="text-blue-800" size={30} />
+              <div className="flex flex-col">
+                <div className="flex text-lg font-semibold text-blue-800 items-start w-72">
+                  Autorreflexão
                 </div>
-                <div className="flex justify-start items-baseline gap-1 text-xl text-slate-100 font-bold tabular-nums leading-none">
-                  73/120
-                  <span className="text-sm font-semibold text-blue-800">
+                <ChartContainer
+                  config={{
+                    steps: {
+                      label: "Steps",
+                      color: "hsl(var(--chart-1))",
+                    },
+                  }}
+                  className="aspect-auto h-[32px] w-full"
+                >
+                  <BarChart
+                    accessibilityLayer
+                    layout="vertical"
+                    margin={{
+                      left: 0,
+                      top: 0,
+                      right: 0,
+                      bottom: 0,
+                    }}
+                    data={[
+                      {
+                        date: "73/120 min",
+                        steps: 12435,
+                      },
+                    ]}
+                  >
+                    <Bar
+                      dataKey="steps"
+                      fill="hsl(var(--secondary))"
+                      radius={10}
+                      barSize={70}
+                    >
+                      <LabelList
+                        position="insideLeft"
+                        dataKey="date"
+                        offset={8}
+                        fontSize={12}
+                        fill="white"
+                      />
+                    </Bar>
+                    <YAxis dataKey="date" type="category" tickCount={1} hide />
+                    <XAxis dataKey="steps" type="number" hide />
+                  </BarChart>
+                </ChartContainer>
+              </div>
+            </div>
+            <div className="flex flex-row gap-2 w-full items-center">
+              <Icon
+                iconNode={flowerLotus}
+                className="text-blue-800"
+                size={30}
+              />
+              <div className="flex flex-col">
+                <div className="flex text-lg font-semibold text-blue-800 items-start w-72">
+                  Meditação
+                </div>
+                <ChartContainer
+                  config={{
+                    steps: {
+                      label: "Steps",
+                      color: "hsl(var(--chart-1))",
+                    },
+                  }}
+                  className="aspect-auto h-[32px] w-full"
+                >
+                  <BarChart
+                    accessibilityLayer
+                    layout="vertical"
+                    margin={{
+                      left: 0,
+                      top: 0,
+                      right: 0,
+                      bottom: 0,
+                    }}
+                    data={[
+                      {
+                        date: "5/15 min",
+                        steps: 12435,
+                      },
+                    ]}
+                  >
+                    <Bar
+                      dataKey="steps"
+                      fill="hsl(var(--secondary))"
+                      radius={10}
+                      barSize={40}
+                    >
+                      <LabelList
+                        position="insideLeft"
+                        dataKey="date"
+                        offset={8}
+                        fontSize={12}
+                        fill="white"
+                      />
+                    </Bar>
+                    <YAxis dataKey="date" type="category" tickCount={1} hide />
+                    <XAxis dataKey="steps" type="number" hide />
+                  </BarChart>
+                </ChartContainer>
+              </div>
+            </div>
+            <div className="flex flex-row gap-2 w-full items-center">
+              <Activity className="text-blue-800" size={30} />
+              <div className="flex flex-col">
+                <div className="flex text-lg font-semibold text-blue-800 items-start w-72">
+                  Hobby
+                </div>
+                <ChartContainer
+                  config={{
+                    steps: {
+                      label: "Steps",
+                      color: "hsl(var(--chart-1))",
+                    },
+                  }}
+                  className="aspect-auto h-[32px] w-full"
+                >
+                  <BarChart
+                    accessibilityLayer
+                    layout="vertical"
+                    margin={{
+                      left: 0,
+                      top: 0,
+                      right: 0,
+                      bottom: 0,
+                    }}
+                    data={[
+                      {
+                        date: "73/120 min",
+                        steps: 12435,
+                      },
+                    ]}
+                  >
+                    <Bar
+                      dataKey="steps"
+                      fill="hsl(var(--secondary))"
+                      radius={10}
+                      barSize={32}
+                    >
+                      <LabelList
+                        position="insideLeft"
+                        dataKey="date"
+                        offset={8}
+                        fontSize={12}
+                        fill="white"
+                      />
+                    </Bar>
+                    <YAxis dataKey="date" type="category" tickCount={1} hide />
+                    <XAxis dataKey="steps" type="number" hide />
+                  </BarChart>
+                </ChartContainer>
+              </div>
+            </div>
+          </CardContent>
+          <CardFooter className="flex flex-row border-t border-b-slate-950 p-4">
+            <div className="flex w-full items-center gap-2 border-b-0">
+              <div className="grid flex-1 auto-rows-min gap-0.5">
+                <div className="text-xs text-slate-50">Move</div>
+                <div className="flex items-baseline gap-1 text-purple-700 text-2xl font-bold tabular-nums leading-none">
+                  562
+                  <span className="text-sm font-normal text-purple-700">
+                    kcal
+                  </span>
+                </div>
+              </div>
+              <Separator orientation="vertical" className="mx-2 h-10 w-px" />
+              <div className="grid flex-1 auto-rows-min gap-0.5">
+                <div className="text-xs text-slate-50">Exercise</div>
+                <div className="flex items-baseline gap-1 text-purple-700 text-2xl font-bold tabular-nums leading-none">
+                  73
+                  <span className="text-sm font-normal text-purple-700">
                     min
                   </span>
                 </div>
               </div>
+              <Separator orientation="vertical" className="mx-2 h-10 w-px" />
               <div className="grid flex-1 auto-rows-min gap-0.5">
-                <div className="flex flex-row justify-between w-32 items-center">
-                  <Scale className="text-indigo-700" size={24} />
-                  <div className="flex text-lg font-semibold text-indigo-700 content-start w-24">
-                    Meditação
-                  </div>
-                </div>
-                <div className="flex justify-start items-baseline gap-1 text-xl text-slate-100 font-bold tabular-nums leading-none">
-                  5/15
-                  <span className="text-sm font-semibold text-indigo-700">
-                    min
-                  </span>
-                </div>
-              </div>
-              <div className="grid flex-1 auto-rows-min gap-0.5">
-                <div className="flex flex-row justify-between w-32 items-center">
-                  <Activity className="text-violet-600" size={24} />
-                  <div className="flex text-lg font-semibold text-violet-600 items-start w-24">
-                    Hobby
-                  </div>
-                </div>
-                <div className="flex justify-start items-baseline gap-1 text-xl text-slate-100 font-bold tabular-nums leading-none">
-                  60/120
-                  <span className="text-sm font-semibold text-violet-600">
-                    min
+                <div className="text-xs text-slate-50">Stand</div>
+                <div className="flex items-baseline gap-1 text-purple-700 text-2xl font-bold tabular-nums leading-none">
+                  14
+                  <span className="text-sm font-normal text-purple-700">
+                    hr
                   </span>
                 </div>
               </div>
             </div>
-            <ChartContainer
-              config={{
-                autorreflexao: {
-                  label: "Autorreflexao",
-                  color: "hsl(var(--secondary))",
-                },
-                meditacao: {
-                  label: "Meditacao",
-                  color: "hsl(var(--third))",
-                },
-                hobby: {
-                  label: "Hobby",
-                  color: "hsl(var(--fourth))",
-                },
-              }}
-              className="mx-auto aspect-square w-full max-w-[80%]"
-            >
-              <RadialBarChart
-                margin={{
-                  left: -10,
-                  right: -10,
-                  top: -10,
-                  bottom: -10,
-                }}
-                data={[
-                  {
-                    activity: "hobby",
-                    value: (60 / 120) * 100,
-                    fill: "var(--color-hobby)",
-                  },
-                  {
-                    activity: "meditacao",
-                    value: (5 / 15) * 100,
-                    fill: "var(--color-meditacao)",
-                  },
-                  {
-                    activity: "autorreflexao",
-                    value: (245 / 360) * 100,
-                    fill: "var(--color-autorreflexao)",
-                  },
-                ]}
-                innerRadius="20%"
-                barSize={24}
-                startAngle={90}
-                endAngle={450}
-              >
-                <PolarAngleAxis
-                  type="number"
-                  domain={[0, 100]}
-                  dataKey="value"
-                  tick={false}
-                />
-                <RadialBar dataKey="value" background cornerRadius={5} />
-              </RadialBarChart>
-            </ChartContainer>
-          </CardContent>
+          </CardFooter>
         </Card>
         <Card
           className="lg:max-w-md bg-gradient-to-br from-sky-300 via-indigo-300 to-violet-400 shadow-md"
@@ -168,26 +288,30 @@ export function Overview() {
             </div>
             <div className="flex w-full">
               <div className="w-1/2">
-                <CardDescription>Média por sessão</CardDescription>
+                <CardDescription className="text-slate-50">
+                  Média por sessão
+                </CardDescription>
                 <CardTitle className="flex items-baseline text-purple-900 gap-1 text-4xl">
                   5
-                  <span className="text-sm font-normal tracking-normal text-muted-foreground">
+                  <span className="text-sm font-normal tracking-normal text-slate-50">
                     min
                   </span>
                 </CardTitle>
               </div>
               <div className="w-1/2">
-                <CardDescription>Total</CardDescription>
+                <CardDescription className="text-slate-50">
+                  Total
+                </CardDescription>
                 <div className="flex flex-row">
                   <CardTitle className="flex items-baseline text-purple-900 gap-1 text-4xl">
                     35
-                    <span className="text-sm font-normal tracking-normal text-muted-foreground">
+                    <span className="text-sm font-normal tracking-normal text-slate-50">
                       h
                     </span>
                   </CardTitle>
                   <CardTitle className="flex items-baseline text-purple-900 gap-1 text-4xl">
                     17
-                    <span className="text-sm font-normal tracking-normal text-muted-foreground">
+                    <span className="text-sm font-normal tracking-normal text-slate-50">
                       min
                     </span>
                   </CardTitle>
@@ -413,118 +537,7 @@ export function Overview() {
         </Card>
       </div>
       <div className="grid w-full flex-1 gap-6 lg:max-w-[20rem]">
-        <Card className="max-w-xs" x-chunk="charts-01-chunk-2">
-          <CardHeader>
-            <CardTitle>Progress</CardTitle>
-            <CardDescription>
-              You're average more steps a day this year than last year.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="grid gap-4">
-            <div className="grid auto-rows-min gap-2">
-              <div className="flex items-baseline gap-1 text-2xl font-bold tabular-nums leading-none">
-                12,453
-                <span className="text-sm font-normal text-muted-foreground">
-                  steps/day
-                </span>
-              </div>
-              <ChartContainer
-                config={{
-                  steps: {
-                    label: "Steps",
-                    color: "hsl(var(--chart-1))",
-                  },
-                }}
-                className="aspect-auto h-[32px] w-full"
-              >
-                <BarChart
-                  accessibilityLayer
-                  layout="vertical"
-                  margin={{
-                    left: 0,
-                    top: 0,
-                    right: 0,
-                    bottom: 0,
-                  }}
-                  data={[
-                    {
-                      date: "2024",
-                      steps: 12435,
-                    },
-                  ]}
-                >
-                  <Bar
-                    dataKey="steps"
-                    fill="var(--color-steps)"
-                    radius={4}
-                    barSize={32}
-                  >
-                    <LabelList
-                      position="insideLeft"
-                      dataKey="date"
-                      offset={8}
-                      fontSize={12}
-                      fill="white"
-                    />
-                  </Bar>
-                  <YAxis dataKey="date" type="category" tickCount={1} hide />
-                  <XAxis dataKey="steps" type="number" hide />
-                </BarChart>
-              </ChartContainer>
-            </div>
-            <div className="grid auto-rows-min gap-2">
-              <div className="flex items-baseline gap-1 text-2xl font-bold tabular-nums leading-none">
-                10,103
-                <span className="text-sm font-normal text-muted-foreground">
-                  steps/day
-                </span>
-              </div>
-              <ChartContainer
-                config={{
-                  steps: {
-                    label: "Steps",
-                    color: "hsl(var(--muted))",
-                  },
-                }}
-                className="aspect-auto h-[32px] w-full"
-              >
-                <BarChart
-                  accessibilityLayer
-                  layout="vertical"
-                  margin={{
-                    left: 0,
-                    top: 0,
-                    right: 0,
-                    bottom: 0,
-                  }}
-                  data={[
-                    {
-                      date: "2023",
-                      steps: 10103,
-                    },
-                  ]}
-                >
-                  <Bar
-                    dataKey="steps"
-                    fill="var(--color-steps)"
-                    radius={4}
-                    barSize={32}
-                  >
-                    <LabelList
-                      position="insideLeft"
-                      dataKey="date"
-                      offset={8}
-                      fontSize={12}
-                      fill="hsl(var(--muted-foreground))"
-                    />
-                  </Bar>
-                  <YAxis dataKey="date" type="category" tickCount={1} hide />
-                  <XAxis dataKey="steps" type="number" hide />
-                </BarChart>
-              </ChartContainer>
-            </div>
-          </CardContent>
-        </Card>
+        
         <Card className="max-w-xs" x-chunk="charts-01-chunk-3">
           <CardHeader className="p-4 pb-0">
             <CardTitle>Walking Distance</CardTitle>
@@ -606,111 +619,6 @@ export function Overview() {
               </BarChart>
             </ChartContainer>
           </CardContent>
-        </Card>
-        <Card className="max-w-xs" x-chunk="charts-01-chunk-4">
-          <CardContent className="flex gap-4 p-4 pb-2">
-            <ChartContainer
-              config={{
-                move: {
-                  label: "Move",
-                  color: "hsl(var(--chart-1))",
-                },
-                stand: {
-                  label: "Stand",
-                  color: "hsl(var(--chart-2))",
-                },
-                exercise: {
-                  label: "Exercise",
-                  color: "hsl(var(--chart-3))",
-                },
-              }}
-              className="h-[140px] w-full"
-            >
-              <BarChart
-                margin={{
-                  left: 0,
-                  right: 0,
-                  top: 0,
-                  bottom: 10,
-                }}
-                data={[
-                  {
-                    activity: "stand",
-                    value: (8 / 12) * 100,
-                    label: "8/12 hr",
-                    fill: "var(--color-stand)",
-                  },
-                  {
-                    activity: "exercise",
-                    value: (46 / 60) * 100,
-                    label: "46/60 min",
-                    fill: "var(--color-exercise)",
-                  },
-                  {
-                    activity: "move",
-                    value: (245 / 360) * 100,
-                    label: "245/360 kcal",
-                    fill: "var(--color-move)",
-                  },
-                ]}
-                layout="vertical"
-                barSize={32}
-                barGap={2}
-              >
-                <XAxis type="number" dataKey="value" hide />
-                <YAxis
-                  dataKey="activity"
-                  type="category"
-                  tickLine={false}
-                  tickMargin={4}
-                  axisLine={false}
-                  className="capitalize"
-                />
-                <Bar dataKey="value" radius={5}>
-                  <LabelList
-                    position="insideLeft"
-                    dataKey="label"
-                    fill="white"
-                    offset={8}
-                    fontSize={12}
-                  />
-                </Bar>
-              </BarChart>
-            </ChartContainer>
-          </CardContent>
-          <CardFooter className="flex flex-row border-t p-4">
-            <div className="flex w-full items-center gap-2">
-              <div className="grid flex-1 auto-rows-min gap-0.5">
-                <div className="text-xs text-muted-foreground">Move</div>
-                <div className="flex items-baseline gap-1 text-2xl font-bold tabular-nums leading-none">
-                  562
-                  <span className="text-sm font-normal text-muted-foreground">
-                    kcal
-                  </span>
-                </div>
-              </div>
-              <Separator orientation="vertical" className="mx-2 h-10 w-px" />
-              <div className="grid flex-1 auto-rows-min gap-0.5">
-                <div className="text-xs text-muted-foreground">Exercise</div>
-                <div className="flex items-baseline gap-1 text-2xl font-bold tabular-nums leading-none">
-                  73
-                  <span className="text-sm font-normal text-muted-foreground">
-                    min
-                  </span>
-                </div>
-              </div>
-              <Separator orientation="vertical" className="mx-2 h-10 w-px" />
-              <div className="grid flex-1 auto-rows-min gap-0.5">
-                <div className="text-xs text-muted-foreground">Stand</div>
-                <div className="flex items-baseline gap-1 text-2xl font-bold tabular-nums leading-none">
-                  14
-                  <span className="text-sm font-normal text-muted-foreground">
-                    hr
-                  </span>
-                </div>
-              </div>
-            </div>
-          </CardFooter>
         </Card>
       </div>
       <div className="grid w-full flex-1 gap-6">
