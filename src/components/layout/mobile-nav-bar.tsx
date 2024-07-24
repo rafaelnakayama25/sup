@@ -17,16 +17,16 @@ export default function MobileNavBar() {
   const pathname = usePathname();
   return (
     <NavigationMenu>
-      <NavigationMenuList className="h-20 p-4 fixed bottom-0 w-full z-50 justify-around items-center bg-white border-t-2 from-sky-300 via-indigo-300 to-violet-400">
+      <NavigationMenuList className="h-20 p-4 fixed bottom-0 w-full z-50 justify-around items-center bg-gradient-to-b from-slate-50 to-slate-300 border-t-1">
         <NavigationMenuItem>
           <Link href="/meditation" legacyBehavior passHref>
             <NavigationMenuLink
-              className={`${navigationMenuTriggerStyle()} h-14 w-14 flex items-center justify-center bg-indigo-500 text-white px-2 `}
+              className={`${navigationMenuTriggerStyle()} h-14 w-14 flex items-center justify-center bg-gradient-to-b from-sky-300 via-indigo-300 to-violet-400 text-white px-2 `}
             >
               <Icon
                 iconNode={flowerLotus}
                 size={38} // Adjusted size
-                className={`${pathname === "/meditation" ? "text-primary" : ""}`}
+                className={`${pathname === "/meditation" ? "text-indigo-800" : ""}`}
               />
             </NavigationMenuLink>
           </Link>
@@ -34,11 +34,11 @@ export default function MobileNavBar() {
         <NavigationMenuItem>
           <Link href="/emotional" legacyBehavior passHref>
             <NavigationMenuLink
-              className={`${navigationMenuTriggerStyle()} h-14 w-14 flex items-center justify-center text-gray-500`}
+              className={`${navigationMenuTriggerStyle()} h-14 w-14 flex items-center justify-center bg-gradient-to-b from-sky-300 via-indigo-300 to-violet-400 text-white px-2`}
             >
               <NotebookPen
                 size={38} // Adjusted size
-                className={`${pathname === "/emotional" ? "text-primary" : ""}`}
+                className={`${pathname === "/emotional" ? "text-indigo-800" : ""}`}
               />
             </NavigationMenuLink>
           </Link>
@@ -46,11 +46,11 @@ export default function MobileNavBar() {
         <NavigationMenuItem>
           <Link href="/schedule" legacyBehavior passHref>
             <NavigationMenuLink
-              className={`${navigationMenuTriggerStyle()} h-14 w-14 flex items-center justify-center text-gray-500`}
+              className={`${navigationMenuTriggerStyle()} h-14 w-14 flex items-center justify-center bg-gradient-to-b from-sky-300 via-indigo-300 to-violet-400 text-white px-2`}
             >
               <CalendarDays
                 size={38} // Adjusted size
-                className={`${pathname === "/schedule" ? "text-primary" : ""}`}
+                className={`${pathname === "/schedule" ? "text-indigo-800" : ""}`}
               />
             </NavigationMenuLink>
           </Link>
@@ -58,11 +58,11 @@ export default function MobileNavBar() {
         <NavigationMenuItem>
           <Link href="/settings" legacyBehavior passHref>
             <NavigationMenuLink
-              className={`${navigationMenuTriggerStyle()} h-14 w-14 flex items-center justify-center`}
+              className={`${navigationMenuTriggerStyle()} h-14 w-14 flex items-center justify-center bg-gradient-to-b from-sky-300 via-indigo-300 to-violet-400 text-white px-2`}
             >
               <Cog
                 size={38} // Adjusted size
-                className={`${pathname === "/settings" ? "text-primary" : ""}`}
+                className={`${pathname === "/settings" ? "text-indigo-800" : ""}`}
               />
             </NavigationMenuLink>
           </Link>
