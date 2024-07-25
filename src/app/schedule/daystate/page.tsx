@@ -1,6 +1,10 @@
 import { Check, X, Dot } from "lucide-react";
 
-export default function DayState({ day }: { day: boolean | undefined }) {
+interface DayStateProps {
+  day?: boolean | undefined;
+}
+
+const DayState: React.FC<DayStateProps> = ({ day }) => {
   let icon;
   let iconColor = "";
   let iconSize = 20;
@@ -24,4 +28,6 @@ export default function DayState({ day }: { day: boolean | undefined }) {
       <IconComponent className={iconColor} size={iconSize} />
     </div>
   );
-}
+};
+
+export default DayState;
