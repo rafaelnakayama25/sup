@@ -6,8 +6,16 @@ import * as React from "react";
 import DayState from "./daystate/page";
 import Link from "next/link";
 
+type HabitStreak = {
+  [date: string]: boolean;
+};
+
+type Habits = {
+  [habit: string]: HabitStreak;
+};
+
 export default function Home() {
-  const habits = {
+  const habits: Habits = {
     "beber água": {
       "2024-07-24": true,
       "2024-07-23": false,
@@ -31,7 +39,7 @@ export default function Home() {
   return (
     <main className="container relative flex flex-col gap-8 px-4 pt-16">
       {habits == null ||
-        (Object.keys(habits).length == 0 && (
+        (Object.keys(habits).length === 0 && (
           <h1 className="mt-20 text-4xl font-light text-white font-display text-center">
             No habits yet
           </h1>
@@ -39,19 +47,25 @@ export default function Home() {
       {habits != null &&
         Object.entries(habits).map(([habit, habitStreak]) => (
           <div key={habit} className="flex flex-col gap-2">
-            <div className="flex itemsn-center justify-between">
+            <div className="flex items-center justify-between">
               <span className="text-xl font-light text-black">{habit}</span>
               <Button>
                 <Trash className="text-white" size={20} />
               </Button>
             </div>
             <section className="grid grid-cols-7 bg-neutral-800 rounded-md p-2">
-              {sortedWeekDays.map((day) => (
-                <div key={day} className="flex flex-col last:font-bold">
-                  <span className="text-white text-xs text-center">{day}</span>
-                  <DayState day={undefined} />
-                </div>
-              ))}
+              {sortedWeekDays.map((day, index) => {
+                const dates = Object.keys(habitStreak);
+                const dayKey = dates[dates.length - 1 - index];
+                const dayState = habitStreak[dayKey] ?? undefined;
+
+                return (
+                  <div key={day} className="flex flex-col last:font-bold">
+                    <span className="text-white text-xs text-center">{day}</span>
+                    <DayState day={dayState} />
+                  </div>
+                );
+              })}
             </section>
           </div>
         ))}
