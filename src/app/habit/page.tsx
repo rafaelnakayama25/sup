@@ -3,8 +3,8 @@
 import { Button } from "@/components/ui/button";
 import { Trash } from "lucide-react";
 import * as React from "react";
-import DayState from "./daystate/page";
 import Link from "next/link";
+import { DayState } from "@/components/habit-page-components/DayState";
 
 type HabitStreak = {
   [date: string]: boolean;

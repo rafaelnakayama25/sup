@@ -4,7 +4,7 @@ interface DayStateProps {
   day?: boolean | undefined;
 }
 
-const DayState: React.FC<DayStateProps> = ({ day }) => {
+export function DayState({ day }: DayStateProps) {
   let icon;
   let iconColor = "";
   let iconSize = 20;
@@ -28,6 +28,4 @@ const DayState: React.FC<DayStateProps> = ({ day }) => {
       <IconComponent className={iconColor} size={iconSize} />
     </div>
   );
-};
-
-export default DayState;
+}
