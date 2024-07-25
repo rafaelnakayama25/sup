@@ -4,6 +4,7 @@ export default function NewHabit() {
     "use server";
 
     const habit = formData.get("habit");
+
   }
 
   return (
@@ -13,9 +14,16 @@ export default function NewHabit() {
         </h1>
 
         <form action={newHabit} className="flex flex-col gap-4 mt-4">
-          <input id="habit" type="text" placeholder="Habit name" className="p-2 rounded-md border text-black bg-neutral-800 border-gray-300" />
+          <input 
+            id="habit" 
+            type="text" 
+            name="habit"
+            placeholder="Habit name" 
+            className="p-2 rounded-md border text-black bg-neutral-800 border-gray-300" />
 
-          <button type="submit" className="bg-green-400 font-display text-neutral-900 font-regular text-2xl p-2 rounded-md mt-8">
+          <button 
+            type="submit" 
+            className="bg-green-400 font-display text-neutral-900 font-regular text-2xl p-2 rounded-md mt-8">
             cadastrar
           </button>
 

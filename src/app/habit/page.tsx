@@ -36,6 +36,19 @@ export default function Home() {
     .slice(todayWeekDay + 1)
     .concat(weekDays.slice(0, todayWeekDay + 1));
 
+  const last7Days = weekDays
+    .map((_, index) => {
+      const date = new Date();
+      date.setDate(date.getDate() - index);
+
+      return date.toISOString().slice(0, 10);
+    })
+    .reverse();
+
+  type Habits = {
+    [habit: string]: Record<string, boolean>;
+  } | null;
+
   return (
     <main className="container relative flex flex-col gap-8 px-4 pt-16">
       {habits == null ||
@@ -53,20 +66,24 @@ export default function Home() {
                 <Trash className="text-white" size={20} />
               </Button>
             </div>
-            <section className="grid grid-cols-7 bg-neutral-800 rounded-md p-2">
-              {sortedWeekDays.map((day, index) => {
-                const dates = Object.keys(habitStreak);
-                const dayKey = dates[dates.length - 1 - index];
-                const dayState = habitStreak[dayKey] ?? undefined;
+            <Link href={`calendar/${habit}`}>
+              <section className="grid grid-cols-7 bg-neutral-800 rounded-md p-2">
+                {sortedWeekDays.map((day, index) => {
+                  const dates = Object.keys(habitStreak);
+                  const dayKey = dates[dates.length - 1 - index];
+                  const dayState = habitStreak[dayKey] ?? undefined;
 
-                return (
-                  <div key={day} className="flex flex-col last:font-bold">
-                    <span className="text-white text-xs text-center">{day}</span>
-                    <DayState day={dayState} />
-                  </div>
-                );
-              })}
-            </section>
+                  return (
+                    <div key={day} className="flex flex-col last:font-bold">
+                      <span className="text-white text-xs text-center">
+                        {day}
+                      </span>
+                      <DayState day={dayState} />
+                    </div>
+                  );
+                })}
+              </section>
+            </Link>
           </div>
         ))}
       <Link
