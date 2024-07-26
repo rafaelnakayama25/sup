@@ -1,18 +1,17 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { Trash } from "lucide-react";
 import * as React from "react";
 import Link from "next/link";
 import { DayState } from "@/components/habit-page-components/DayState";
+import DeleteButton from "@/components/habit-page-components/DeleteButton";
 
 type HabitStreak = {
   [date: string]: boolean;
 };
 
-type Habits = {
-  [habit: string]: HabitStreak;
-};
+export type Habits = {
+  [habit: string]: Record<string, boolean>;
+} | null;
 
 export default function Home() {
   const habits: Habits = {
@@ -62,9 +61,7 @@ export default function Home() {
           <div key={habit} className="flex flex-col gap-2">
             <div className="flex items-center justify-between">
               <span className="text-xl font-light text-black">{habit}</span>
-              <Button>
-                <Trash className="text-white" size={20} />
-              </Button>
+              <DeleteButton habit={habit} />
             </div>
             <Link href={`calendar/${habit}`}>
               <section className="grid grid-cols-7 bg-neutral-800 rounded-md p-2">

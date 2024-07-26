@@ -9,14 +9,19 @@ export default async function Home({
   params: { habit: string };
 }) {
   const decodedHabit = decodeURI(habit);
+  const habitStreak = {
+    "2024-07-24": true,
+    "2024-07-23": true,
+    "2024-07-22": false,
+  };
 
   return (
-    <main className="container relative flex flex-col gap-8 px-4 pt-16">
+    <main className="container relative flex flex-col gap-2 px-4 pt-2">
       <h1 className="text-2xl font-light text-black text-center font-display">
         {decodedHabit}
       </h1>
 
-      <Button className="w-32 h-12">
+      <Button className="w-28 h-12">
         <Link
           className="flex items-center font-sans text-lg text-black"
           href="/"
@@ -26,7 +31,7 @@ export default async function Home({
         </Link>
       </Button>
 
-      <MyCalendar />
+      <MyCalendar habit={decodedHabit} habitStreak={habitStreak}/>
     </main>
   );
 }

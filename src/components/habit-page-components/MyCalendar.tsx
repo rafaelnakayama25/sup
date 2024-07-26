@@ -2,6 +2,7 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { DayState } from "./DayState";
 
 function getDaysInMonth(month: number, year: number) {
   const date = new Date(year, month, 1);
@@ -23,7 +24,7 @@ const currentYear = currentDate.getFullYear();
 const weekDays = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"];
 const daysInMonth = getDaysInMonth(currentMonth, currentYear);
 
-export default function MyCalendar() {
+export default function MyCalendar({ habit, habitStreak }: { habit: string; habitStreak: Record<string, boolean> | null}) {
 
   const[month, setMonth] = useState(currentMonth);
   const[year, setYear] = useState(currentYear);
@@ -60,6 +61,10 @@ export default function MyCalendar() {
     return ` ${upperCaseMonthName} de ${selectedDate.getFullYear()}`;
   }
 
+  function getDayString(date: Date) {
+    return `${year.toString()}-${(month + 1).toString().padStart(2,"0")}-${date.getDate().toString().padStart(2,"0")}`;
+  }
+
   return (
     <section className="w-full my-2 rounded-md bg-neutral-800">
     <div className="flex justify-between items-center mx-2 my-4 font-sans text-neutral-400">
@@ -73,7 +78,7 @@ export default function MyCalendar() {
     </div>
     <div className="grid w-full grid-cols-7 mt-2">
       {weekDays.map((day) => (
-        <div key={day} className="flex flex-col items-center p-2">
+        <div key={day} className="flex flex-col items-center">
           <span className="font-sans text-xs font-light text-neutral-200">
             {day}
           </span>
@@ -84,6 +89,8 @@ export default function MyCalendar() {
           <span className="font-sans text-xs font-light text-neutral-200">
             {day?.getDate()}
           </span>
+          {day && (<DayState day={habitStreak ? habitStreak[getDayString(day)] : undefined} />
+          )}
         </div>
       ))}
     </div>
