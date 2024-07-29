@@ -4,7 +4,7 @@ interface DayStateProps {
   day?: boolean | undefined;
 }
 
-export function DayState({ day }: DayStateProps) {
+export default function DayState({ day }: DayStateProps) {
   let icon;
   let iconColor = "";
   let iconSize = 20;

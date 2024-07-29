@@ -44,13 +44,13 @@ export default function MobileNavBar() {
           </Link>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <Link href="/schedule" legacyBehavior passHref>
+          <Link href="/habit" legacyBehavior passHref>
             <NavigationMenuLink
               className={`${navigationMenuTriggerStyle()} h-14 w-14 flex items-center justify-center bg-gradient-to-b from-sky-300 via-indigo-300 to-violet-400 text-white px-2`}
             >
               <CalendarDays
                 size={38} // Adjusted size
-                className={`${pathname === "/schedule" ? "text-indigo-800" : ""}`}
+                className={`${pathname === "/habit" ? "text-indigo-800" : ""}`}
               />
             </NavigationMenuLink>
           </Link>
